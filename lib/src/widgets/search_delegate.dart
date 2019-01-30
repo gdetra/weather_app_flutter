@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/src/api/api.dart';
+import 'package:weather_app/src/bloc/weather_bloc.dart';
 import 'package:weather_app/src/models/weather_model.dart';
 
 class Search extends SearchDelegate<WeatherModel> {
+  final WeatherBloc weatherBloc;
+  final List<WeatherModel> weatherList;
   final api = ApiProvider();
+
+  Search({this.weatherBloc, this.weatherList});
+
   @override
   List<Widget> buildActions(BuildContext context) {
     //This widget allows you to se a clear IconButton
