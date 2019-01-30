@@ -9,7 +9,7 @@ class WeatherModel {
   int dt;
   int id;
   String name;
-  int cod;
+  String cod;
 
   WeatherModel(
       {this.coord,
@@ -41,7 +41,7 @@ class WeatherModel {
     dt = json['dt'];
     id = json['id'];
     name = json['name'];
-    cod = json['cod'];
+    cod = json['cod'].toString();
   }
 
   Map<String, dynamic> toJson() {
@@ -76,8 +76,8 @@ class WeatherModel {
 }
 
 class Coord {
-  int lon;
-  int lat;
+  double lon;
+  double lat;
 
   Coord({this.lon, this.lat});
 
@@ -144,7 +144,7 @@ class Weather {
 class Main {
   double temp;
   int humidity;
-  int pressure;
+  double pressure;
   double tempMin;
   double tempMax;
 
@@ -171,7 +171,7 @@ class Main {
 
 class Wind {
   double speed;
-  double deg;
+  int deg;
 
   Wind({this.speed, this.deg});
 
