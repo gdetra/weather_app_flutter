@@ -1,16 +1,15 @@
 # weather_app
 
-A new Flutter project.
+A simple Flutter weather application implemented using BloC pattern.
 
-## Getting Started
+## Requirements
 
-This project is a starting point for a Flutter application.
+1) A Google Mpas Api Key
+2) A openweathermap.org Api Key
 
-A few resources to get you started if this is your first Flutter project:
+You have to put that keys into 'lib/api/api.dart' otherwise the app won't work properly.
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+
+
+
