@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/src/widgets/search_delegate.dart';
 
 class Home extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -8,6 +9,12 @@ class Home extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: Search(),
+              );
+            },
           )
         ],
       ),
