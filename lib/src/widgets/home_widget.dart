@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/src/bloc/weather_bloc.dart';
 import 'package:weather_app/src/bloc/weather_provider.dart';
 import 'package:weather_app/src/models/weather_model.dart';
 import 'package:weather_app/src/widgets/search_delegate.dart';
 
 class Home extends StatelessWidget {
-  final List<WeatherModel> weatherList = [];
+  final List<WeatherModel> weatherList;
+
+  Home(this.weatherList);
 
   Widget build(BuildContext context) {
     final weatherBloc = WeatherProvider.of(context);
@@ -27,7 +30,46 @@ class Home extends StatelessWidget {
           )
         ],
       ),
-      body: Container(),
+      body: buildList(weatherBloc),
+    );
+  }
+
+  Widget buildList(WeatherBloc bloc) {
+    return StreamBuilder(
+      stream: bloc.weatherListStream,
+      builder: (context, AsyncSnapshot<List<WeatherModel>> snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: Text('NO CITY!'),
+          );
+        }
+
+        return ListView.builder(
+          itemCount: snapshot.data.length,
+          itemBuilder: (context, int index) {
+            return Column(
+              children: <Widget>[
+                buildTile(snapshot.data[index]),
+                Divider(),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget buildTile(WeatherModel item) {
+    return ListTile(
+      contentPadding: EdgeInsets.all(8.0),
+      title: Text(
+        item.name,
+        style: TextStyle(fontSize: 22),
+      ),
+      subtitle: Text(
+        'Temperature: ${item.main.temp}',
+        style: TextStyle(fontSize: 18),
+      ),
     );
   }
 }
